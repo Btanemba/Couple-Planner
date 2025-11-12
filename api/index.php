@@ -18,7 +18,18 @@ $method = $_SERVER['REQUEST_METHOD'];
 // Remove /api prefix if present
 $path = preg_replace('/^\/api/', '', $path);
 
+// Add debug info (remove in production)
+error_log("API Debug - Path: " . $path . ", Method: " . $method . ", URI: " . $_SERVER['REQUEST_URI']);
+
 switch ($path) {
+    case '/debug':
+        echo json_encode([
+            'path' => $path,
+            'method' => $method,
+            'uri' => $_SERVER['REQUEST_URI'],
+            'server' => $_SERVER
+        ]);
+        break;
     case '/':
     case '':
         echo json_encode([
@@ -29,9 +40,10 @@ switch ($path) {
         break;
 
     case '/register':
+    case 'register':
         if ($method !== 'POST') {
             http_response_code(405);
-            echo json_encode(['error' => 'Method not allowed']);
+            echo json_encode(['error' => 'Method not allowed', 'received_method' => $method, 'path' => $path]);
             break;
         }
 
@@ -57,9 +69,10 @@ switch ($path) {
         break;
 
     case '/login':
+    case 'login':
         if ($method !== 'POST') {
             http_response_code(405);
-            echo json_encode(['error' => 'Method not allowed']);
+            echo json_encode(['error' => 'Method not allowed', 'received_method' => $method, 'path' => $path]);
             break;
         }
 
