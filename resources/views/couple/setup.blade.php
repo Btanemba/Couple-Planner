@@ -21,78 +21,82 @@
         <form method="POST" action="{{ route('couple.create') }}">
             @csrf
 
-            <div style="margin-bottom: 20px;">
-                <label style="display: block; font-weight: 500; margin-bottom: 8px; color: #333;">
-                    First Partner's Name
-                </label>
-                <input
-                    type="text"
-                    name="partner_one_name"
-                    value="{{ old('partner_one_name') }}"
-                    required
-                    style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px; background: #f8f9fa;"
-                    placeholder="Your name"
-                >
-                @error('partner_one_name')
-                    <div style="color: #dc3545; font-size: 12px; margin-top: 4px;">{{ $message }}</div>
-                @enderror
+            <div class="form-row" style="margin-bottom: 20px;">
+                <div>
+                    <label style="display: block; font-weight: 500; margin-bottom: 8px; color: #333;">
+                        First Partner's Name
+                    </label>
+                    <input
+                        type="text"
+                        name="partner_one_name"
+                        value="{{ old('partner_one_name') }}"
+                        required
+                        style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px; background: #f8f9fa;"
+                        placeholder="Your name"
+                    >
+                    @error('partner_one_name')
+                        <div style="color: #dc3545; font-size: 12px; margin-top: 4px;">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div>
+                    <label style="display: block; font-weight: 500; margin-bottom: 8px; color: #333;">
+                        Second Partner's Name
+                    </label>
+                    <input
+                        type="text"
+                        name="partner_two_name"
+                        value="{{ old('partner_two_name') }}"
+                        required
+                        style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px; background: #f8f9fa;"
+                        placeholder="Partner's name"
+                    >
+                    @error('partner_two_name')
+                        <div style="color: #dc3545; font-size: 12px; margin-top: 4px;">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
 
-            <div style="margin-bottom: 20px;">
-                <label style="display: block; font-weight: 500; margin-bottom: 8px; color: #333;">
-                    Second Partner's Name
-                </label>
-                <input
-                    type="text"
-                    name="partner_two_name"
-                    value="{{ old('partner_two_name') }}"
-                    required
-                    style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px; background: #f8f9fa;"
-                    placeholder="Partner's name"
-                >
-                @error('partner_two_name')
-                    <div style="color: #dc3545; font-size: 12px; margin-top: 4px;">{{ $message }}</div>
-                @enderror
-            </div>
+            <div class="form-row" style="margin-bottom: 20px;">
+                <div>
+                    <label style="display: block; font-weight: 500; margin-bottom: 8px; color: #333;">
+                        When did your relationship start? 💕
+                    </label>
+                    <input
+                        type="date"
+                        name="relationship_start_date"
+                        value="{{ old('relationship_start_date') }}"
+                        required
+                        max="{{ date('Y-m-d') }}"
+                        style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px; background: #f8f9fa;"
+                    >
+                    @error('relationship_start_date')
+                        <div style="color: #dc3545; font-size: 12px; margin-top: 4px;">{{ $message }}</div>
+                    @enderror
+                </div>
 
-            <div style="margin-bottom: 20px;">
-                <label style="display: block; font-weight: 500; margin-bottom: 8px; color: #333;">
-                    When did your relationship start? 💕
-                </label>
-                <input
-                    type="date"
-                    name="relationship_start_date"
-                    value="{{ old('relationship_start_date') }}"
-                    required
-                    max="{{ date('Y-m-d') }}"
-                    style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px; background: #f8f9fa;"
-                >
-                @error('relationship_start_date')
-                    <div style="color: #dc3545; font-size: 12px; margin-top: 4px;">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label style="display: block; font-weight: 500; margin-bottom: 8px; color: #333;">
-                    Anniversary Reminders
-                </label>
-                <select
-                    name="anniversary_reminder"
-                    style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px; background: #f8f9fa;"
-                >
-                    <option value="monthly" {{ old('anniversary_reminder') == 'monthly' ? 'selected' : '' }}>
-                        Monthly (Every month on your anniversary date)
-                    </option>
-                    <option value="yearly" {{ old('anniversary_reminder') == 'yearly' ? 'selected' : '' }}>
-                        Yearly (Only on your anniversary)
-                    </option>
-                    <option value="weekly" {{ old('anniversary_reminder') == 'weekly' ? 'selected' : '' }}>
-                        Weekly (Every week on your anniversary day)
-                    </option>
-                </select>
-                @error('anniversary_reminder')
-                    <div style="color: #dc3545; font-size: 12px; margin-top: 4px;">{{ $message }}</div>
-                @enderror
+                <div>
+                    <label style="display: block; font-weight: 500; margin-bottom: 8px; color: #333;">
+                        Anniversary Reminders
+                    </label>
+                    <select
+                        name="anniversary_reminder"
+                        style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px; background: #f8f9fa;"
+                    >
+                        <option value="monthly" {{ old('anniversary_reminder') == 'monthly' ? 'selected' : '' }}>
+                            Monthly (Every month on your anniversary date)
+                        </option>
+                        <option value="yearly" {{ old('anniversary_reminder') == 'yearly' ? 'selected' : '' }}>
+                            Yearly (Only on your anniversary)
+                        </option>
+                        <option value="weekly" {{ old('anniversary_reminder') == 'weekly' ? 'selected' : '' }}>
+                            Weekly (Every week on your anniversary day)
+                        </option>
+                    </select>
+                    @error('anniversary_reminder')
+                        <div style="color: #dc3545; font-size: 12px; margin-top: 4px;">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
 
             <div style="margin-bottom: 24px;">
@@ -147,6 +151,64 @@
         outline: none;
         border-color: #ff6b6b;
         box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+    }
+
+    /* Responsive form improvements */
+    @media screen and (min-width: 768px) {
+        .card {
+            max-width: none;
+        }
+
+        .header h1 {
+            font-size: 32px;
+        }
+
+        .header p {
+            font-size: 16px;
+        }
+
+        /* Two-column layout for larger forms */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Larger form elements on tablets */
+        input, select, textarea {
+            font-size: 16px !important;
+            padding: 16px !important;
+        }
+
+        button[type="submit"] {
+            padding: 20px !important;
+            font-size: 18px !important;
+        }
+
+        /* Better spacing for labels */
+        label {
+            font-size: 16px !important;
+        }
+
+        /* Center content icon on tablets */
+        .content .card div[style*="text-align: center"] {
+            margin-bottom: 32px;
+        }
+
+        .content .card div[style*="font-size: 64px"] {
+            font-size: 80px;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        /* Even more spacious on large tablets */
+        .form-row {
+            gap: 24px;
+        }
+
+        input, select, textarea {
+            padding: 18px !important;
+        }
     }
 
     /* Prevent zoom on iOS form inputs */

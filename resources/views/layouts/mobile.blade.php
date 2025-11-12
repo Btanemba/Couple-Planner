@@ -41,6 +41,22 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
+        /* Tablet responsiveness */
+        @media screen and (min-width: 768px) {
+            .mobile-container {
+                max-width: 600px;
+                border-radius: 12px;
+                margin-top: 20px;
+                min-height: calc(100vh - 40px);
+            }
+        }
+
+        @media screen and (min-width: 1024px) {
+            .mobile-container {
+                max-width: 700px;
+            }
+        }
+
         .status-bar {
             background: #f8f9fa;
             padding: 8px 16px;
@@ -62,9 +78,27 @@
             font-weight: 600;
         }
 
+        /* Responsive header */
+        @media screen and (min-width: 768px) {
+            .header {
+                padding: 32px 24px;
+                border-radius: 12px 12px 0 0;
+            }
+            .header h1 {
+                font-size: 28px;
+            }
+        }
+
         .content {
             padding: 16px;
             padding-bottom: 80px; /* Space for bottom nav */
+        }
+
+        /* Responsive content padding */
+        @media screen and (min-width: 768px) {
+            .content {
+                padding: 24px 32px 80px 32px;
+            }
         }
 
         .card {
@@ -74,6 +108,14 @@
             margin-bottom: 16px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             border: 1px solid #e9ecef;
+        }
+
+        /* Responsive card padding */
+        @media screen and (min-width: 768px) {
+            .card {
+                padding: 24px;
+                margin-bottom: 20px;
+            }
         }
 
         .card-title {
@@ -88,6 +130,14 @@
             grid-template-columns: 1fr 1fr;
             gap: 12px;
             margin-bottom: 16px;
+        }
+
+        /* Responsive stat grid */
+        @media screen and (min-width: 768px) {
+            .stat-grid {
+                gap: 16px;
+                margin-bottom: 20px;
+            }
         }
 
         .stat-item {
@@ -114,6 +164,15 @@
             grid-template-columns: 1fr 1fr;
             gap: 12px;
             margin-bottom: 16px;
+        }
+
+        /* Responsive quick actions */
+        @media screen and (min-width: 768px) {
+            .quick-actions {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 16px;
+                margin-bottom: 20px;
+            }
         }
 
         .action-btn {
@@ -182,6 +241,21 @@
             display: flex;
             justify-content: space-around;
             padding: 12px 0;
+        }
+
+        /* Responsive bottom nav */
+        @media screen and (min-width: 768px) {
+            .bottom-nav {
+                max-width: 600px;
+                border-radius: 0 0 12px 12px;
+                padding: 16px 0;
+            }
+        }
+
+        @media screen and (min-width: 1024px) {
+            .bottom-nav {
+                max-width: 700px;
+            }
         }
 
         .nav-item {
