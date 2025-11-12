@@ -1,5 +1,5 @@
 @echo off
-echo Building Couple Planner Android App...
+echo Building Couple Planner Desktop App...
 echo.
 
 REM Check if NativePHP is properly installed
@@ -18,10 +18,10 @@ echo 2. Building assets...
 call npm run build
 
 echo.
-echo 3. Building Android APK...
-php artisan native:android
+echo 3. Building Desktop App...
+php artisan native:build
 
 echo.
-echo Build complete! Check the 'dist' folder for your APK file.
+echo Build complete! Check the 'dist' folder for your desktop app.
 echo.
 pause
