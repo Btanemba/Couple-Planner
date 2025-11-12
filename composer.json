@@ -26,6 +26,7 @@
         "nunomaduro/collision": "^8.6",
         "phpunit/phpunit": "^11.5.3"
     },
+
     "repositories": [
         {
             "type": "composer",
@@ -77,10 +78,9 @@
             "@php artisan migrate --graceful --ansi"
         ],
         "post-install-cmd": [
-            "@php artisan key:generate --ansi --force",
-            "@php artisan migrate --force",
-            "@php artisan config:cache",
-            "@php artisan route:cache"
+            "@php artisan key:generate --ansi --force || echo 'Key already exists'",
+            "@php artisan config:cache || echo 'Config cache failed'",
+            "@php artisan route:cache || echo 'Route cache failed'"
         ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
