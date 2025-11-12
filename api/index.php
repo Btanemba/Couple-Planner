@@ -12,14 +12,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // Basic API endpoints
-$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$uri = $_SERVER['REQUEST_URI'];
+$path = parse_url($uri, PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
 
-// Remove /api prefix if present
+// Clean up the path - remove /api prefix and normalize
 $path = preg_replace('/^\/api/', '', $path);
+$path = trim($path, '/');
 
-// Add debug info (remove in production)
-error_log("API Debug - Path: " . $path . ", Method: " . $method . ", URI: " . $_SERVER['REQUEST_URI']);
+// Add debug info
+error_log("API Debug - Original URI: " . $uri . ", Cleaned Path: '" . $path . "', Method: " . $method);
 
 switch ($path) {
     case '/debug':
@@ -68,7 +70,6 @@ switch ($path) {
         ]);
         break;
 
-    case '/login':
     case 'login':
         if ($method !== 'POST') {
             http_response_code(405);
