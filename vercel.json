@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "buildCommand": "bash build-vercel.sh",
+    "buildCommand": "npm ci && npm run build && mkdir -p public",
     "functions": {
         "api/index.php": { "runtime": "vercel-php@0.7.1" }
     },
