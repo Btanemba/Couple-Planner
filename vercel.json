@@ -1,19 +1,17 @@
 {
     "version": 2,
-    "framework": null,
-    "outputDirectory": "public",
-    "buildCommand": "composer install --no-dev --optimize-autoloader && npm ci && npm run build",
+    "buildCommand": "bash build-vercel.sh",
     "functions": {
         "api/index.php": { "runtime": "vercel-php@0.7.1" }
     },
     "routes": [
         {
-            "src": "/(css|js|img)/(.*)",
-            "dest": "public/$1/$2"
+            "src": "/build/(.*)",
+            "dest": "/public/build/$1"
         },
         {
-            "src": "/build/(.*)",
-            "dest": "public/build/$1"
+            "src": "/(css|js|img)/(.*)",
+            "dest": "/public/$1/$2"
         },
         {
             "src": "/(.*)",
