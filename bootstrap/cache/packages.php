@@ -53,6 +53,13 @@
       0 => 'Native\\Laravel\\NativeServiceProvider',
     ),
   ),
+  'nativephp/mobile' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Native\\Mobile\\NativeServiceProvider',
+    ),
+  ),
   'nesbot/carbon' => 
   array (
     'providers' => 

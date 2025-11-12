@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "367548d23026ac6684fe66068a1eddec",
+    "content-hash": "bda263c8c4ed76b7a896bf1bbd50ed33",
     "packages": [
         {
             "name": "brick/math",
@@ -6660,6 +6660,104 @@
             "time": "2024-12-18T18:27:23+00:00"
         },
         {
+            "name": "nativephp/mobile",
+            "version": "1.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://nativephp.composer.sh/download/9eccc7e1-8bb8-4df7-9c57-219129de7114/nativephp-1.0.0.zip",
+                "reference": "95f15c937b9d26c3b3191421af629005c36c50e8",
+                "shasum": "933282f6f4b611b1a36ba2b13924d9de34da3bb6"
+            },
+            "require": {
+                "illuminate/contracts": "^10.0|^11.0|^12.0",
+                "laravel/prompts": "^0.1.1|^0.2|^0.3",
+                "php": "^8.3",
+                "spatie/laravel-package-tools": "^1.14.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^7.9",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^8.18",
+                "pestphp/pest": "^2.7",
+                "pestphp/pest-plugin-arch": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Native\\Mobile\\NativeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Native\\Mobile\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Native\\Mobile\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "qa": [
+                    "@composer format",
+                    "@composer analyse",
+                    "@composer test"
+                ],
+                "test": [
+                    "vendor/bin/pest"
+                ],
+                "format": [
+                    "vendor/bin/pint"
+                ],
+                "analyse": [
+                    "vendor/bin/phpstan analyse"
+                ],
+                "test-coverage": [
+                    "vendor/bin/pest --coverage"
+                ],
+                "post-autoload-dump": [
+                    "@php ./vendor/bin/testbench package:discover --ansi"
+                ]
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Hamp",
+                    "role": "Developer",
+                    "email": "simon.hamp@me.com"
+                },
+                {
+                    "name": "Shane Rosenthal",
+                    "role": "Developer",
+                    "email": "srosenthal@gmail.com"
+                },
+                {
+                    "name": "Marcel Pociot",
+                    "role": "Developer",
+                    "email": "marcel@beyondco.de"
+                }
+            ],
+            "description": "NativePHP for Mobile",
+            "homepage": "https://nativephp.com/mobile",
+            "keywords": [
+                "android",
+                "ios",
+                "laravel",
+                "nativephp"
+            ],
+            "time": "2025-04-30T14:34:45+00:00"
+        },
+        {
             "name": "nativephp/php-bin",
             "version": "0.5.6",
             "source": {
@@ -8546,7 +8644,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.2"
+        "php": "^8.2|^8.3"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
