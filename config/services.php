@@ -28,6 +28,13 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'couple_api' => [
+        'base_url' => env('COUPLE_API_URL', 'https://couple-planner.vercel.app/api'),
+        'timeout' => env('COUPLE_API_TIMEOUT', 30),
+    ],
+
+];
+
     'slack' => [
         'notifications' => [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
