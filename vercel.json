@@ -1,7 +1,8 @@
 {
     "version": 2,
-    "buildCommand": "npm ci && npm run build && mkdir -p dist && cp -r public/* dist/ 2>/dev/null || true",
+    "buildCommand": "composer install --no-dev --optimize-autoloader && npm ci && npm run build",
     "functions": {
+        "index.php": { "runtime": "vercel-php@0.7.1" },
         "api/index.php": { "runtime": "vercel-php@0.7.1" }
     },
     "routes": [
@@ -10,8 +11,16 @@
             "dest": "/build/$1"
         },
         {
+            "src": "/manifest.json",
+            "dest": "/public/manifest.json"
+        },
+        {
+            "src": "/icon-192.svg",
+            "dest": "/public/icon-192.svg"
+        },
+        {
             "src": "/(css|js|img)/(.*)",
-            "dest": "/$1/$2"
+            "dest": "/public/$1/$2"
         },
         {
             "src": "/api/(.*)",
@@ -19,13 +28,16 @@
         },
         {
             "src": "/(.*)",
-            "dest": "/api/index.php"
+            "dest": "/index.php"
         }
     ],
     "env": {
         "APP_ENV": "production",
+        "APP_KEY": "base64:A9GzLdOUDreT6Sd70eB8aY0ux/625r+eI1iVkkQZgeY=",
         "APP_DEBUG": "false",
         "LOG_CHANNEL": "stderr",
-        "SESSION_DRIVER": "cookie"
+        "SESSION_DRIVER": "cookie",
+        "DB_CONNECTION": "sqlite",
+        "DB_DATABASE": "/tmp/database.sqlite"
     }
 }
