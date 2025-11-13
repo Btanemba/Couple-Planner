@@ -152,10 +152,25 @@ if (strpos($path, '/api/') === 0) {
         <h1>💕 Couple Planner</h1>
         <p>Plan amazing dates and trips together</p>
 
-        <a href="#" class="btn" onclick="showLogin()">Login</a>
-        <a href="#" class="btn" onclick="showRegister()">Register</a>
-
-        <div class="features">
+        <div id="auth-forms">
+            <button class="btn" onclick="showLoginForm()">Login</button>
+            <button class="btn" onclick="showRegisterForm()">Register</button>
+        </div>
+        <div id="login-form" style="display:none; margin-top:2rem;">
+            <h3>Login</h3>
+            <input type="email" id="loginEmail" placeholder="Email" style="margin-bottom:10px;width:100%;padding:10px;">
+            <input type="password" id="loginPassword" placeholder="Password" style="margin-bottom:10px;width:100%;padding:10px;">
+            <button class="btn" onclick="submitLogin()">Submit</button>
+        </div>
+        <div id="register-form" style="display:none; margin-top:2rem;">
+            <h3>Register</h3>
+            <input type="text" id="regName" placeholder="Name" style="margin-bottom:10px;width:100%;padding:10px;">
+            <input type="email" id="regEmail" placeholder="Email" style="margin-bottom:10px;width:100%;padding:10px;">
+            <input type="password" id="regPassword" placeholder="Password" style="margin-bottom:10px;width:100%;padding:10px;">
+            <button class="btn" onclick="submitRegister()">Submit</button>
+        </div>
+        <div id="result" class="result" style="display:none;margin-top:20px;"></div>
+        <div class="features" style="margin-top:2rem;">
             <div class="feature">🗓️ Plan romantic dates</div>
             <div class="feature">✈️ Organize trips together</div>
             <div class="feature">💝 Create shared memories</div>
@@ -164,18 +179,73 @@ if (strpos($path, '/api/') === 0) {
     </div>
 
     <script>
-        function showLogin() {
-            alert('Login feature coming soon! This is the PWA version.');
+        function showLoginForm() {
+            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('register-form').style.display = 'none';
+            document.getElementById('result').style.display = 'none';
         }
-        function showRegister() {
-            alert('Register feature coming soon! This is the PWA version.');
+        function showRegisterForm() {
+            document.getElementById('register-form').style.display = 'block';
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('result').style.display = 'none';
         }
-
+        function showResult(message, isError = false) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = message;
+            resultDiv.className = isError ? 'result error' : 'result success';
+            resultDiv.style.display = 'block';
+        }
+        async function submitRegister() {
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+            if (!name || !email || !password) {
+                showResult('Please fill in all registration fields', true);
+                return;
+            }
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password })
+                });
+                const data = await response.json();
+                if (response.ok && data.success) {
+                    showResult(`✅ Registration successful! User: ${data.user?.name || name}`, false);
+                } else {
+                    showResult(`❌ Registration failed: ${data.message || data.error || 'Unknown error'}`, true);
+                }
+            } catch (error) {
+                showResult(`❌ Connection error: ${error.message}`, true);
+            }
+        }
+        async function submitLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            if (!email || !password) {
+                showResult('Please fill in all login fields', true);
+                return;
+            }
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await response.json();
+                if (response.ok && data.success) {
+                    showResult(`✅ Login successful! Welcome: ${data.user?.name || 'User'}`, false);
+                } else {
+                    showResult(`❌ Login failed: ${data.message || data.error || 'Unknown error'}`, true);
+                }
+            } catch (error) {
+                showResult(`❌ Connection error: ${error.message}`, true);
+            }
+        }
         // PWA installation prompt
         let deferredPrompt;
         window.addEventListener('beforeinstallprompt', (e) => {
             deferredPrompt = e;
-            // Show install button
             const installBtn = document.createElement('a');
             installBtn.href = '#';
             installBtn.className = 'btn';
