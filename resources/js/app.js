@@ -1,4 +1,5 @@
 import './bootstrap';
+import './mobile-api';
 
 import Alpine from 'alpinejs';
 
