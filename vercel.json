@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "buildCommand": "npm ci && npm run build && cp -r public dist",
+    "buildCommand": "npm ci && npm run build && mkdir -p dist && cp -r public/* dist/ 2>/dev/null || true",
     "functions": {
         "api/index.php": { "runtime": "vercel-php@0.7.1" }
     },
