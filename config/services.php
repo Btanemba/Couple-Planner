@@ -33,12 +33,10 @@ return [
         'timeout' => env('COUPLE_API_TIMEOUT', 30),
     ],
 
-];
-
     'slack' => [
         'notifications' => [
-            'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
-            'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
+            'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN', null),
+            'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL', '#general'),
         ],
     ],
 
