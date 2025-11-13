@@ -1,6 +1,7 @@
 {
     "version": 2,
     "buildCommand": "npm ci && npm run build",
+    "outputDirectory": "public",
     "functions": {
         "api/index.php": { "runtime": "vercel-php@0.7.1" }
     },
@@ -11,15 +12,15 @@
         },
         {
             "src": "/manifest.json",
-            "dest": "/public/manifest.json"
+            "dest": "/manifest.json"
         },
         {
             "src": "/icon-192.svg",
-            "dest": "/public/icon-192.svg"
+            "dest": "/icon-192.svg"
         },
         {
             "src": "/(css|js|img)/(.*)",
-            "dest": "/public/$1/$2"
+            "dest": "/$1/$2"
         },
         {
             "src": "/(.*)",
