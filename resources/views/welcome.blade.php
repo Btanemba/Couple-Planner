@@ -50,11 +50,104 @@
             @endif
         </header>
         <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
-            <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
-                <div class="text-[13px] leading-[20px] flex-1 p-6 pb-12 lg:p-20 bg-white dark:bg-[#161615] dark:text-[#EDEDEC] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] rounded-bl-lg rounded-br-lg lg:rounded-tl-lg lg:rounded-br-none">
-                    <h1 class="mb-1 font-medium">Let's get started</h1>
-                    <p class="mb-2 text-[#706f6c] dark:text-[#A1A09A]">Laravel has an incredibly rich ecosystem. <br>We suggest starting with the following.</p>
-                    <ul class="flex flex-col mb-4 lg:mb-6">
+            <main class="flex max-w-[900px] w-full flex-col items-center justify-center min-h-[80vh] p-8">
+                <!-- App Logo/Icon -->
+                <div class="mb-8">
+                    <div class="w-24 h-24 bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 rounded-3xl flex items-center justify-center shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                        <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5 2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="text-center mb-12 max-w-2xl">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-pink-600 via-purple-600 to-red-600 bg-clip-text text-transparent leading-tight">
+                        Couple Planner
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                        Plan perfect dates, create amazing memories, and strengthen your relationship together
+                    </p>
+                    <p class="text-lg text-gray-500 dark:text-gray-400 mb-12">
+                        From romantic dinners to adventure trips - we help couples make every moment count
+                    </p>
+                </div>
+
+                <!-- Feature Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 w-full max-w-4xl">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
+                        <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-pink-600 dark:text-pink-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9,11H7L12,6L17,11H15V16H9V11M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100">Date Planning</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Discover and plan romantic dates tailored to your interests and budget</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
+                        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,17L8,13H11V9H13V13H16L12,17Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100">Trip Adventures</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Plan unforgettable getaways and adventures together</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
+                        <div class="w-12 h-12 bg-red-100 dark:bg-red-900 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-red-600 dark:text-red-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5 2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100">Memory Keeper</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Capture and cherish your special moments together</p>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 w-full max-w-md">
+                    @guest
+                        <a href="{{ route('register') }}"
+                           class="flex-1 bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-center text-lg">
+                            Get Started
+                        </a>
+
+                        <a href="{{ route('login') }}"
+                           class="flex-1 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 hover:border-pink-300 dark:hover:border-pink-400 text-gray-700 dark:text-gray-200 font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-center text-lg">
+                            Sign In
+                        </a>
+                    @else
+                        <a href="{{ route('dashboard') }}"
+                           class="w-full bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-center text-lg">
+                            Go to Dashboard
+                        </a>
+                    @endguest
+                </div>
+
+                <!-- Trust Indicators -->
+                <div class="mt-16 text-center">
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Trusted by couples worldwide</p>
+                    <div class="flex justify-center items-center space-x-8 opacity-60">
+                        <div class="flex items-center space-x-1">
+                            <span class="text-2xl">💕</span>
+                            <span class="text-sm font-medium">10k+ Couples</span>
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <span class="text-2xl">📱</span>
+                            <span class="text-sm font-medium">Mobile Ready</span>
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <span class="text-2xl">🔒</span>
+                            <span class="text-sm font-medium">Secure & Private</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>
                         <li class="flex items-center gap-4 py-2 relative before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A] before:top-1/2 before:bottom-0 before:left-[0.4rem] before:absolute">
                             <span class="relative py-1 bg-white dark:bg-[#161615]">
                                 <span class="flex items-center justify-center rounded-full bg-[#FDFDFC] dark:bg-[#161615] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.03),0px_1px_2px_0px_rgba(0,0,0,0.06)] w-3.5 h-3.5 border dark:border-[#3E3E3A] border-[#e3e3e0]">
