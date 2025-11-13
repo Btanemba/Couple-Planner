@@ -14,7 +14,22 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $user = Auth::user();
+        // Check if we're in mobile environment
+        $isMobile = config('app.env') === 'production' && config('nativephp.server_url');
+
+        if ($isMobile) {
+            // For mobile, get user from session
+            $userSession = session('user');
+            if (!$userSession) {
+                return redirect()->route('login');
+            }
+
+            // Create a mock user object for mobile
+            $user = (object) $userSession;
+            $user->isInCouple = function() { return false; }; // Simplified for mobile
+        } else {
+            $user = Auth::user();
+        }
 
         // Check if user is in a couple
         if (!$user->isInCouple()) {
