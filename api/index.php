@@ -1,45 +1,39 @@
 <?php
 
-// Simple API entry point for Vercel
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Authorization');
+use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Http\Request;
 
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit();
-}
+define('LARAVEL_START', microtime(true));
 
-// Basic API endpoints
 $uri = $_SERVER['REQUEST_URI'];
 $path = parse_url($uri, PHP_URL_PATH);
-$method = $_SERVER['REQUEST_METHOD'];
 
-// Clean up the path - remove /api prefix and normalize
-$path = preg_replace('/^\/api/', '', $path);
-$path = trim($path, '/');
+// If this is an API endpoint (starts with /api/), serve API responses
+if (strpos($path, '/api/') === 0) {
+    // Remove /api prefix for API endpoints
+    $apiPath = preg_replace('/^\/api/', '', $path);
+    $apiPath = trim($apiPath, '/');
+    $method = $_SERVER['REQUEST_METHOD'];
 
-// Add debug info
-error_log("API Debug - Original URI: " . $uri . ", Cleaned Path: '" . $path . "', Method: " . $method);
+    header('Content-Type: application/json');
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type, Authorization');
 
-switch ($path) {
-    case '/debug':
-        echo json_encode([
-            'path' => $path,
-            'method' => $method,
-            'uri' => $_SERVER['REQUEST_URI'],
-            'server' => $_SERVER
-        ]);
-        break;
-    case '/':
-    case '':
-        echo json_encode([
-            'message' => 'Couple Planner API',
-            'version' => '1.0.0',
-            'status' => 'active'
-        ]);
-        break;
+    if ($method === 'OPTIONS') {
+        http_response_code(200);
+        exit();
+    }
+
+    switch ($apiPath) {
+        case '/':
+        case '':
+            echo json_encode([
+                'message' => 'Couple Planner API',
+                'version' => '1.0.0',
+                'status' => 'active'
+            ]);
+            break;
 
     case '/register':
     case 'register':
@@ -99,8 +93,23 @@ switch ($path) {
         ]);
         break;
 
-    default:
-        http_response_code(404);
-        echo json_encode(['error' => 'Endpoint not found']);
-        break;
+        default:
+            http_response_code(404);
+            echo json_encode(['error' => 'Endpoint not found']);
+            break;
+    }
+    exit();
 }
+
+// For non-API requests, serve the Laravel application
+require_once __DIR__.'/../vendor/autoload.php';
+
+$app = require_once __DIR__.'/../bootstrap/app.php';
+
+$kernel = $app->make(Kernel::class);
+
+$response = $kernel->handle(
+    $request = Request::capture()
+)->send();
+
+$kernel->terminate($request, $response);
